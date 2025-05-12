@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'MauritiusCondensed';
-  src: url('Mauritius W01 Condensed.ttf') format('truetype');
+  src: url('MauritiusW01Condensed') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MauritiusItalic';
-  src: url('Mauritius W01 Italic.ttf') format('truetype');
+  src: url('MauritiusW01Italic') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
@@ -571,14 +571,14 @@ footer {
     padding: 2rem;
   }
     .content-title {
-    font-size: 60px; /* Smaller font size for mobile */
+    font-size: 60px;
     line-height: 1.1;
     word-wrap: break-word;
     hyphens: auto;
   }
 
   .content-title.sub {
-    font-size: 55px; /* Slightly smaller for subtitle */
+    font-size: 55px;
   }
 
   .content-subtitle {
