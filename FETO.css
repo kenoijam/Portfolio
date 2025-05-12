@@ -358,24 +358,24 @@
     text-align: center;
   }
 
-  .back-button {
-    position: fixed;
-    bottom:20px;
-    left: 15px;
-    width: 50px;
-    height: 50px;
-    background-color: #D84727; 
-    color: #f7eee3;
-    font-size: 24px;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-  }
+.back-button {
+  position: fixed;
+  top: 210px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #D84727; 
+  color: #f7eee3;
+  font-size: 25px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
   
   .back-button:hover {
     background-color: #da6247;
