@@ -570,6 +570,24 @@ footer {
   .thumbnail {
     padding: 2rem;
   }
+    .content-title {
+    font-size: 60px; /* Smaller font size for mobile */
+    line-height: 1.1;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .content-title.sub {
+    font-size: 55px; /* Slightly smaller for subtitle */
+  }
+
+  .content-subtitle {
+    font-size: small;
+  }
+
+  .arrow {
+    padding-top: 10px
+  }
   
 }
 
