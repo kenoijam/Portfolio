@@ -680,15 +680,15 @@
       margin-top: 1rem;
     }
     
-    .hero {
-      padding: 1rem;
-    }
-    
     .hero-text h1 {
       font-size: 3rem;
       margin-left: 0;
       text-align: center;
     }
+
+      .hero-tags {
+    font-size: 14px;
+  }
 
     .hero-image {
       justify-content: center;

@@ -18,73 +18,6 @@
       </ul>
     </nav>
 
-<script>
-//         const emailText = document.getElementById("emailText");
-
-// // Add an event listener to the text to copy it when clicked
-// emailText.addEventListener("click", function() {
-//     // Create a temporary text area to hold the email text
-//     const textarea = document.createElement("textarea");
-//     textarea.value = emailText.innerText;
-//     document.body.appendChild(textarea);
-//     textarea.select();
-//     document.execCommand("copy");
-//     document.body.removeChild(textarea);
-
-//     // Optionally, alert the user that the email was copied
-//     alert("Email copied to clipboard: " + textarea.value);
-// });
-
-    // const email = document.getElementById("email");
-    // const popup = document.getElementById("popup");
-
-    // email.addEventListener("click", function (e) {
-    //   const emailText = email.textContent;
-
-    //   // Fallback-compatible copy logic
-    //   if (navigator.clipboard && window.isSecureContext) {
-    //     navigator.clipboard.writeText(emailText).then(() => {
-    //       showPopup(e.pageX, e.pageY);
-    //     }).catch(err => {
-    //       fallbackCopy(emailText, e.pageX, e.pageY);
-    //     });
-    //   } else {
-    //     fallbackCopy(emailText, e.pageX, e.pageY);
-    //   }
-    // });
-
-    // function fallbackCopy(text, x, y) {
-    //   const textarea = document.createElement("textarea");
-    //   textarea.value = text;
-    //   document.body.appendChild(textarea);
-    //   textarea.select();
-    //   try {
-    //     document.execCommand("copy");
-    //     showPopup(x, y);
-    //   } catch (err) {
-    //     alert("Copy failed");
-    //   }
-    //   document.body.removeChild(textarea);
-    // }
-
-    // function showPopup(x, y) {
-    //   popup.style.left = `${x + 10}px`;
-    //   popup.style.top = `${y + 10}px`;
-    //   popup.style.display = "block";
-    //   requestAnimationFrame(() => {
-    //     popup.style.opacity = "1";
-    //   });
-
-    //   setTimeout(() => {
-    //     popup.style.opacity = "0";
-    //     setTimeout(() => {
-    //       popup.style.display = "none";
-    //     }, 300);
-    //   }, 2000);
-    // }
-</script>
-
-
   </header>
 
   <main>
@@ -106,7 +39,7 @@
 
     <section class="hello-section">
         <div class="photo-card">
-          <img src="IMAGES/PROFILE 2.jpg" style="width:400px;height:400px;"/>
+          <img src="IMAGES/PROFILE 2.jpg" style="width:300px;height:300px;"/>
         </div>
         <div class="info-card">
           <h2><span class="underline">Hello!</span></h2>
