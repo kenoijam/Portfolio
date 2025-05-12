@@ -588,6 +588,10 @@ footer {
   .arrow {
     padding-top: 10px
   }
+
+    .y-arrow {
+    padding-top: -30px
+  }
   
 }
 
@@ -601,6 +605,10 @@ footer {
   .thumbnail {
     padding: 1.5rem;
   }
+
+    .y-arrow{
+    padding-bottom: 100px;
+  }
 }
 
 @media (max-width: 350px) { 
@@ -613,8 +621,6 @@ footer {
     grid-template-columns: 1fr;
     padding: 0 1rem;
   }
-
-  
   
   .thumbnail {
     padding: 1rem;

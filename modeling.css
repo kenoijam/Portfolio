@@ -399,17 +399,6 @@
   color: #f7eee3;
 }
 
-.domain:after, .domain-1:after, .domain-2:after, 
-.domain-3:after, .domain-4:after {
-  top: -50px;  /* Move higher up */
-  right: -80px; /* Move slightly less to the right */
-}
-
-.domain-5:after, .domain-6:after, .domain-7:after {
-  top: -50px;  /* Move higher up */
-  right: -80px; /* Move slightly less to the right */
-}
-
 @media (max-width: 1024px) {
   .parallax-section-1,
   .parallax-section-2,
@@ -423,6 +412,17 @@
     background-position: center center;
     background-size: cover;
   }
+.domain:after, .domain-1:after, .domain-2:after, 
+.domain-3:after, .domain-4:after {
+  top: -120px;  /* Move higher up */
+  right: -150px; /* Move slightly less to the right */
+}
+
+.domain-5:after, .domain-6:after, .domain-7:after {
+  top: -120px;  /* Move higher up */
+  right: -100px; /* Move slightly less to the right */
+}
+
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -444,6 +444,7 @@
     .content img {
         grid-template-columns: repeat(3, 1fr);
     }
+
 }
 
 @media (max-width:600px){
@@ -550,6 +551,17 @@
     font-size: 55px; /* Slightly smaller for subtitle */
   }
 
+
+  .domain:after, .domain-1:after, .domain-2:after, 
+.domain-3:after, .domain-4:after {
+  top: -90px;  /* Move higher up */
+  right: -110px; /* Move slightly less to the right */
+}
+
+.domain-5:after, .domain-6:after, .domain-7:after {
+  top: -90px;  /* Move higher up */
+  right: -80px; /* Move slightly less to the right */
+}
 }
 
 footer {
