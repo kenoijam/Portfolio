@@ -410,6 +410,36 @@
   right: -80px; /* Move slightly less to the right */
 }
 
+@media (max-width: 1024px) {
+  .parallax-section-1,
+  .parallax-section-2,
+  .parallax-section-3,
+  .parallax-section-4,
+  .parallax-section-5,
+  .parallax-section-6,
+  .parallax-section-7,
+  .parallax-section-8 {
+    background-attachment: scroll !important; /* Force scroll on mobile */
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  .parallax-section-1,
+  .parallax-section-2,
+  .parallax-section-3,
+  .parallax-section-4,
+  .parallax-section-5,
+  .parallax-section-6,
+  .parallax-section-7,
+  .parallax-section-8 {
+    background-attachment: scroll !important;
+    background-size: cover;
+  }
+}
+
 @media (max-width:900px){
     .content img {
         grid-template-columns: repeat(3, 1fr);
