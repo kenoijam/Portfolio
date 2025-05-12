@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kenisha's Portfolio</title>
+  <link rel="stylesheet" href="COOLDOWN.css"/>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="index.html"><img src="/IMAGES/LOGO.png" style="width:128px;height:128px;" ></a></div>
+      <ul style="font-family: Arial, Helvetica, sans-serif;">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="content.html">CONTENT</a></li>
+        <li><a a class="active" href="artsandmedia.html">ARTS AND MEDIA</a></li>
+        <li><a href="modeling.html">MODELING</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <a href="artsandmedia.html" class="back-button" title="Back to More Projects">
+    &#8592;
+  </a>
+
+  <section class="artsandmedia">
+    <div class="title-page">
+      <div class="title-content-horizontal">
+      <div class="qrcode">
+          <a href="https://youtube.com/@cooldownpodcast?si=Uy9EYX-qn_R0PVF1" target="_blank">
+            <img src="QRCODES/COOLDOWN PODCAST.png"></a>
+        </div>
+      <div class="content-header">
+      <h2 class="content-title">Cooldown</h2>
+      <h2 class="content-title sub">Podcast</h2>
+      </div>
+    </div>
+    </div>
+  <div class="content-section">
+    <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>I edit "Cooldown Podcast"
+          for Youtube and Spotify<br>
+          as well as the Youtube shorts,
+          IG reels and Tiktok content.</p>
+      </div>
+    </div>
+      <div class="job-block">
+        <h2 class="h2">My<span class="circle">Job</span></h2>
+        <p>Graphic Designer<br>
+          Video Editor<br>
+          Copywritter
+        </p>
+      </div>
+    <div class="calender">
+      <p>2023 - 2024</p>
+  </div>
+
+  </section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-contacts">
+        <ul class="socials">
+          <li><strong>SOCIALS</strong></li>
+          <li><strong>Email</strong>: <span id="email">kenishagw@gmail.com</span></li>
+          <div id="popup"><strong>Email copied to clipboard!</strong></div>
+          <script>
+            const email = document.getElementById("email");
+            const popup = document.getElementById("popup");
+        
+            email.addEventListener("click", function (e) {
+              const emailText = email.textContent;
+        
+              // Fallback-compatible copy logic
+              if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(emailText).then(() => {
+                  showPopup(e.pageX, e.pageY);
+                }).catch(err => {
+                  fallbackCopy(emailText, e.pageX, e.pageY);
+                });
+              } else {
+                fallbackCopy(emailText, e.pageX, e.pageY);
+              }
+            });
+        
+            function fallbackCopy(text, x, y) {
+              const textarea = document.createElement("textarea");
+              textarea.value = text;
+              document.body.appendChild(textarea);
+              textarea.select();
+              try {
+                document.execCommand("copy");
+                showPopup(x, y);
+              } catch (err) {
+                alert("Copy failed");
+              }
+              document.body.removeChild(textarea);
+            }
+
+            function copyEmail(x, y) {
+              const emailText = email.textContent;
+
+              if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(emailText).then(() => {
+                    showPopup(x, y);
+                      }).catch(() => {
+            fallbackCopy(emailText, x, y);
+            });
+            } else {
+              fallbackCopy(emailText, x, y);
+            }
+          }
+
+          email.addEventListener("touchstart", function (e) {
+            const touch = e.touches[0];
+            copyEmail(touch.pageX, touch.pageY);
+          });   
+        
+            function showPopup(x, y) {
+              popup.style.left = `${x + 10}px`;
+              popup.style.top = `${y + 10}px`;
+              popup.style.display = "block";
+              requestAnimationFrame(() => {
+                popup.style.opacity = "1";
+              });
+        
+              setTimeout(() => {
+                popup.style.opacity = "0";
+                setTimeout(() => {
+                  popup.style.display = "none";
+                }, 300);
+              }, 2000);
+            }
+          </script>
+          <li><strong>Instagram</strong>: <a href="https://www.instagram.com/kenisha_g.w/" target="_blank">@kenisha.g_w</a></li>
+          <li><strong>TikTok</strong>: <a href="https://www.tiktok.com/@kenishagabriella" target="_blank">@kenishagabriella</a></li>
+          <li><strong>YouTube</strong>: <a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank">@kenoijam</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-nav">
+        <ul>
+          <li><strong>PAGES</strong></li>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="content.html">CONTENT</a></li>
+          <li><a href="artsandmedia.html">ARTS AND MEDIA</a></li>
+          <li><a href="modeling.html">MODELING</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <p>Copyright © 2025 <strong>Kenisha</strong>. All Rights Reserved.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
+</div>

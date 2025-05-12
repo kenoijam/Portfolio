@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kenisha's Portfolio - Content</title>
+  <link rel="stylesheet" href="content.css" />
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle both vertical and horizontal videos
+    const videos = document.querySelectorAll('.hover-video, .hover-video1');
+    
+    videos.forEach(video => {
+        // Set initial state
+        video.muted = true;
+        video.preload = "metadata"; // Preload metadata for faster start
+        
+        // Get the parent container
+        const container = video.closest('.video-hover') || video.closest('.video-hover1');
+        
+        // Pre-load videos to avoid black screen
+        function preloadVideo() {
+            container.classList.add('loading');
+            
+            // Load the video data
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Video is loaded and can be played
+                    video.pause();
+                    video.currentTime = 0;
+                    video.classList.add('loaded');
+                    container.classList.remove('loading');
+                    console.log('Video preloaded successfully');
+                }).catch(error => {
+                    console.error('Error preloading video:', error);
+                    container.classList.remove('loading');
+                });
+            }
+        }
+        
+        // Try to preload the video when it's about to be needed
+        if (isInViewport(container)) {
+            preloadVideo();
+        }
+        
+        // Check when video comes into viewport
+        window.addEventListener('scroll', function() {
+            if (isInViewport(container) && !video.classList.contains('loaded')) {
+                preloadVideo();
+            }
+        });
+        
+        // On hover, play the video
+        container.addEventListener('mouseenter', function() {
+            if (video.classList.contains('loaded')) {
+                // Video is already loaded, play it
+                video.currentTime = 0;
+                video.muted = false;
+                video.play().catch(error => {
+                    // If autoplay with sound fails, try muted
+                    console.log('Autoplay with sound blocked, falling back to muted playback');
+                    video.muted = true;
+                    video.play();
+                });
+            } else {
+                // Video is not loaded yet, start loading
+                preloadVideo();
+                // Meanwhile, keep the thumbnail visible
+            }
+        });
+        
+        // On mouse leave, pause and reset
+        container.addEventListener('mouseleave', function() {
+            video.pause();
+            video.currentTime = 0;
+            video.muted = true;
+        });
+        
+        // For touch devices
+        container.addEventListener('touchstart', function(e) {
+            // Don't block link clicks
+            if (e.target.closest('.click-overlay')) {
+                return;
+            }
+            
+            e.preventDefault();
+            
+            if (video.paused) {
+                // Play video if it's loaded
+                if (video.classList.contains('loaded')) {
+                    video.muted = true;  // Always muted on mobile for better autoplay support
+                    video.play();
+                } else {
+                    preloadVideo();
+                }
+            } else {
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+        
+        // Error handling
+        video.addEventListener('error', function(e) {
+            console.error('Video error:', e);
+            container.classList.remove('loading');
+            // Keep showing the thumbnail if video fails
+        });
+    });
+    
+    // Helper function to check if an element is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+});
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="index.html"><img src="/IMAGES/LOGO.png" style="width:128px;height:128px;" ></a></div>
+      <ul style="font-family: Arial, Helvetica, sans-serif;">
+        <li><a href="index.html">HOME</a></li>
+        <li><a class="active" href="content.html">CONTENT</a></li>
+        <li><a href="artsandmedia.html">ARTS AND MEDIA</a></li>
+        <li><a href="modeling.html">MODELING</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Today's Thankfulness -->
+    <section class="content-section thankfulness-section">
+      <div class="content-header">
+        <h2 class="content-title">Today's</h2>
+        <h2 class="content-title sub">Thankfulness</h2>
+        <p class="content-subtitle">FIND SOMETHING YOU'RE THANKFUL FOR EACH DAY</p>
+      </div>
+      
+    <div class="bar"></div>
+
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>These days people are starting to be ungrateful.<br>
+        They either compare themselves or what they have with other people.<br>
+        With this content, I want to spread positivity and help<br>
+        everyone can upload their daily lives.<br>
+        So I created #todaysthankfulness mentioning one thing I'm thankful for today.<br>
+        I also want to spread this to my followers by randomly<br>
+        asking them what they're thankful for that day.</p>
+      </div>
+      
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>The goal of this content is to spread positivity and gratitude.<br>
+        I encourage people to be grateful for what they have.<br>
+        It also works as a self-reminder for myself as well.</p>
+      </div>
+      
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I film the content, edit the videos, and design the thumbnails by myself!</p>
+      </div>
+      
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Uploaded on</h2>
+        <img class="arrow" src="/ELEMENTS/ARROW 2.png">
+      </div>
+
+      <div class="platform">
+        <div class="platform-column">
+            <li class="platform-item">INSTAGRAM REELS</li>
+            <li class="platform-item-2"><a href="https://www.instagram.com/kenisha_g.w/" target="_blank"><strong>@kenisha_g.w</strong></a></li>
+        </div>
+        <div class="platform-column">
+                <li class="platform-item">TIKTOK</li>
+                <li class="platform-item-2"><a href="https://www.tiktok.com/@kenishagabriella" target="_blank"><strong>@kenishagabriella</strong></a></li>
+        </div>
+        <div class="platform-column">
+                <li class="platform-item">YOUTUBE SHORTS</li>
+                <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
+         </div>
+      </div>
+
+      <div class="thumbnail">
+        <h2 class="h2">Some<span class="circle">Videos:</span></h2>
+        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Instagram Reel!</p>
+        <div class="thumb-grid">
+          <div class="video-hover">
+            <img src="/TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img">
+            <video class="hover-video" loop playsinline>
+              <source src="/VIDEO/EP 1.mp4">
+            </video>
+            <a href="https://www.instagram.com/reel/DE67B-5TZHb/" target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover">
+            <img src="/TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 1.png" class="preview-img">
+            <video class="hover-video" loop playsinline>
+              <source src="/VIDEO/EP 4.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <a href="https://www.instagram.com/reel/DFS4vyBTbW3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover">
+            <img src="/TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 2.png" class="preview-img">
+            <video class="hover-video" loop playsinline>
+              <source src="/VIDEO/EP 6.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <a href="//www.instagram.com/reel/DFmPTdrT9mG/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover">
+            <img src="/TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 3.png" class="preview-img">
+            <video class="hover-video" loop playsinline>
+              <source src="/VIDEO/EP 13.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <a href="//www.instagram.com/reel/DFmPTdrT9mG/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="click-overlay"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class="bar"></div>
+
+     <!-- Youtube Content -->
+     <section class="content-section thankfulness-section">
+      <div class="content-header">
+        <h2 class="content-title">Youtube</h2>
+        <h2 class="content-title sub">Content</h2>
+        <p class="content-subtitle">RANDOM VLOGS AND CHALLENGES</p>
+      </div>
+      
+    <div class="bar"></div>
+
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>I started a Youtube channel for random vlogs and challenges
+          with friends and family. I use this channel as my digital diary to
+          compile my memories and fun times I had.</p>
+      </div>
+      
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>The goal of this channel is to be a comfort channel,
+          I aim to make the viewers feel relaxed at times of resting.
+          Hopefully the viewers enjoy my content, bringing smiles and laughters</p>
+      </div>
+      
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I film the content, edit the videos, and design the thumbnails by myself! </p>
+      </div>
+      
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Username</h2>
+        <img class="y-arrow" src="/ELEMENTS/ARROW 3.png">
+      </div>
+
+      <div class="platform">
+        <div class="platform-column">
+            <li class="platform-item">Keni</li>
+            <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
+        </div>
+      </div>
+
+      <div class="thumbnail">
+        <h2 class="h2">Some<span class="circle">Videos:</span></h2>
+        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Youtube Video!</p>
+        <div class="thumb-grid1">
+          <div class="video-hover1">
+            <img src="/YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
+            <video class="hover-video1" loop playsinline preload="metadata">
+              <source src="/VIDEO/GRWM AND QNA.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <a href="https://youtu.be/wMBVDmtGPUI?si=6q9DYGmzFaN29Q4B" target="_blank" class="click-overlay"></a>
+          </div>
+
+            <div class="video-hover1">
+              <img src="/YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
+              <video class="hover-video1" loop playsinline preload="metadata">
+                <source src="/VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <a href="https://youtu.be/sgVkKjCftKg?si=BxHFh5XJ8qlC4ZaI" target="_blank" class="click-overlay"></a>
+            </div>
+
+              <div class="video-hover1">
+                <img src="/YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
+                <video class="hover-video1" loop playsinline preload="metadata">
+                  <source src="/VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <a href="https://youtu.be/bHT1uYfg2U8?si=nYJghgSiYqE6a4xC" target="_blank" class="click-overlay"></a>
+              </div>
+
+                <div class="video-hover1">
+                  <img src="/YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
+                  <video class="hover-video1" loop playsinline preload="metadata">
+                    <source src="/VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <a href="https://youtu.be/nqUmwclDOuU?si=tjNqWmczBs0Mf9yK" target="_blank" class="click-overlay"></a>
+                </div>
+        
+        </div>
+      </div>
+    </section>
+    
+    <div class="bar"></div>
+  
+     <!-- Gaming Streams -->
+     <section class="content-section thankfulness-section">
+      <div class="content-header">
+        <h2 class="content-title">Gaming</h2>
+        <h2 class="content-title sub">Streams</h2>
+        <p class="content-subtitle">OCASSIONAL VARIETY GAMING STREAMS ON TIKTOK</p>
+      </div>
+      
+    <div class="bar"></div>
+
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>In my free time, I like to stream games!
+          Mostly Valorant, but I sometimes do variety streams
+          with my friends, for different games.</p>
+      </div>
+      
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>The goal of my streams is to entertain viewers.
+          Bringing joy and laughter after a long day, since I
+          stream mostly at night. I love interacting with my viewers as well.</p>
+      </div>
+      
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">Games</span></h2>
+        <p>VALORANT, ROBLOX, STARDEW VALLEY, OVERWATCH, ETC. </p>
+      </div>
+      
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Where</h2>
+        <img class="g-arrow" src="/ELEMENTS/ARROW 3.png">
+      </div>
+
+      <div class="platform">
+        <div class="platform-column">
+            <li class="platform-item">TIKTOK</li>
+            <li class="platform-item-2"><a href="https://www.tiktok.com/@kenishagabriella" target="_blank"><strong>@kenishagabriella</strong></a></li>
+        </div>
+      </div>
+    </section>
+    
+    <div class="bar"></div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-contacts">
+        <ul class="socials">
+          <li><strong>SOCIALS</strong></li>
+          <li><strong>Email</strong>: <span id="email">kenishagw@gmail.com</span></li>
+          <div id="popup"><strong>Email copied to clipboard!</strong></div>
+          <script>
+            const email = document.getElementById("email");
+            const popup = document.getElementById("popup");
+        
+            email.addEventListener("click", function (e) {
+              const emailText = email.textContent;
+        
+              // Fallback-compatible copy logic
+              if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(emailText).then(() => {
+                  showPopup(e.pageX, e.pageY);
+                }).catch(err => {
+                  fallbackCopy(emailText, e.pageX, e.pageY);
+                });
+              } else {
+                fallbackCopy(emailText, e.pageX, e.pageY);
+              }
+            });
+        
+            function fallbackCopy(text, x, y) {
+              const textarea = document.createElement("textarea");
+              textarea.value = text;
+              document.body.appendChild(textarea);
+              textarea.select();
+              try {
+                document.execCommand("copy");
+                showPopup(x, y);
+              } catch (err) {
+                alert("Copy failed");
+              }
+              document.body.removeChild(textarea);
+            }
+
+            function copyEmail(x, y) {
+              const emailText = email.textContent;
+
+              if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(emailText).then(() => {
+                    showPopup(x, y);
+                      }).catch(() => {
+            fallbackCopy(emailText, x, y);
+            });
+            } else {
+              fallbackCopy(emailText, x, y);
+            }
+          }
+
+          email.addEventListener("touchstart", function (e) {
+            const touch = e.touches[0];
+            copyEmail(touch.pageX, touch.pageY);
+          });   
+        
+            function showPopup(x, y) {
+              popup.style.left = `${x + 10}px`;
+              popup.style.top = `${y + 10}px`;
+              popup.style.display = "block";
+              requestAnimationFrame(() => {
+                popup.style.opacity = "1";
+              });
+        
+              setTimeout(() => {
+                popup.style.opacity = "0";
+                setTimeout(() => {
+                  popup.style.display = "none";
+                }, 300);
+              }, 2000);
+            }
+          </script>
+          <li><strong>Instagram</strong>: <a href="https://www.instagram.com/kenisha_g.w/" target="_blank">@kenisha.g_w</a></li>
+          <li><strong>TikTok</strong>: <a href="https://www.tiktok.com/@kenishagabriella" target="_blank">@kenishagabriella</a></li>
+          <li><strong>YouTube</strong>: <a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank">@kenoijam</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-nav">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="content.html">CONTENT</a></li>
+          <li><a href="artsandmedia.html">ARTS AND MEDIA</a></li>
+          <li><a href="modeling.html">MODELING</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <p>Copyright © 2025 <strong>Kenisha</strong>. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
