@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'MauritiusCondensed';
-  src: url('MauritiusW01Condensed') format('truetype');
+  src: url('Mauritius W01 Condensed.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'MauritiusItalic';
-  src: url('MauritiusW01Italic') format('truetype');
+  src: url('Mauritius W01 Italic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
