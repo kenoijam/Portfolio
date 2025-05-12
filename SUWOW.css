@@ -86,7 +86,7 @@
   
   .navbar a.active {
     border-radius: 1rem;
-    background-image: url('/ELEMENTS/CIRCLE 2.png');
+    background-image: url('ELEMENTS/CIRCLE 2.png');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -107,7 +107,7 @@
   
   .title-page {
     position: relative;
-    background-image: url(/ARTSANDMEDIA/SUWOW.png);
+    background-image: url(ARTSANDMEDIA/SUWOW.png);
     width: 100vw;
     min-height: 100vh;
     background-attachment: fixed;
@@ -216,7 +216,7 @@
   .circle{
   font-style: italic;
   border-radius: 2rem;
-  background-image: url('/ELEMENTS/CIRCLE.png');
+  background-image: url('ELEMENTS/CIRCLE.png');
   background-size: contain;
   background-position: 4px center;
   background-repeat: no-repeat;
@@ -229,7 +229,7 @@
   .underline {
   font-style: italic;
   display: inline-block;
-  background-image: url(/ELEMENTS/UNDERLINE.png);
+  background-image: url(ELEMENTS/UNDERLINE.png);
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: 100% 5px;

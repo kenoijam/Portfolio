@@ -84,7 +84,7 @@
 
   .navbar a.active {
     border-radius: 1rem;
-    background-image: url('/ELEMENTS/CIRCLE 1.png');
+    background-image: url('ELEMENTS/CIRCLE 1.png');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -94,7 +94,7 @@
 
   .parallax-section-1 {
     position: relative;
-    background-image: url(/MODELING/PARRALLEX.jpg);
+    background-image: url(MODELING/PARRALLEX.jpg);
     width: 100vw;
     height: 540px;
     background-attachment: fixed;
@@ -109,7 +109,7 @@
 
 .parallax-section-2 {
   position: relative;
-  background-image: url(/MODELING/_MG_8664.JPG);
+  background-image: url(MODELING/_MG_8664.JPG);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -124,7 +124,7 @@
 
 .parallax-section-3 {
   position: relative;
-  background-image: url(/MODELING/9Z6A9450\ 2.jpg);
+  background-image: url(MODELING/9Z6A9450\ 2.jpg);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -139,7 +139,7 @@
 
 .parallax-section-4 {
   position: relative;
-  background-image: url(/MODELING/IMG_9729.JPG);
+  background-image: url(MODELING/IMG_9729.JPG);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -154,7 +154,7 @@
 
 .parallax-section-5 {
   position: relative;
-  background-image: url(/MODELING/IMG_6011.jpg);
+  background-image: url(MODELING/IMG_6011.jpg);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -169,7 +169,7 @@
 
 .parallax-section-6 {
   position: relative;
-  background-image: url(/MODELING/IMG_7593_Original\ copy\ 2.JPG);
+  background-image: url(MODELING/IMG_7593_Original\ copy\ 2.JPG);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -184,7 +184,7 @@
 
 .parallax-section-7 {
   position: relative;
-  background-image: url(/MODELING/IMG_7981_Original\ copy.JPG);
+  background-image: url(MODELING/IMG_7981_Original\ copy.JPG);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;
@@ -199,7 +199,7 @@
 
 .parallax-section-8 {
   position: relative;
-  background-image: url(/MODELING/IMG_7722_Original\ copy.JPG);
+  background-image: url(MODELING/IMG_7722_Original\ copy.JPG);
   width: 100vw;
   height: 540px;
   background-attachment: fixed;

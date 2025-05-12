@@ -84,7 +84,7 @@
 
   .navbar a.active {
     border-radius: 1rem;
-    background-image: url('/ELEMENTS/CIRCLE.png');
+    background-image: url('ELEMENTS/CIRCLE.png');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -175,7 +175,7 @@
   .underline {
     font-style: italic;
     display: inline-block;
-    background-image: url(/ELEMENTS/UNDERLINE.png);
+    background-image: url(ELEMENTS/UNDERLINE.png);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: 100% 5px;
@@ -296,7 +296,7 @@
   .circle{
     font-style: italic;
     border-radius: 2rem;
-    background-image: url('/ELEMENTS/CIRCLE.png');
+    background-image: url('ELEMENTS/CIRCLE.png');
     background-size: contain;
     background-position: 5px center;
     background-repeat: no-repeat;

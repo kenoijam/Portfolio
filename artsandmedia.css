@@ -156,7 +156,7 @@
 
   .title-page {
     position: relative;
-    background-image: url(/IMAGES/ARTSANDMEDIA/STATE\ OF\ AFFAIRS-06.png);
+    background-image: url(/ARTSANDMEDIA/STATE\ OF\ AFFAIRS-06.png);
     width: 100vw;
     min-height: 100vh;
     background-attachment: fixed;
@@ -172,7 +172,7 @@
 
 .title-page2 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/STATE\ OF\ AFFAIRS-07.png);
+  background-image: url(ARTSANDMEDIA/STATE\ OF\ AFFAIRS-07.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -188,7 +188,7 @@
 
 .title-page3 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/COOLDOWN.png);
+  background-image: url(ARTSANDMEDIA/COOLDOWN.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -204,7 +204,7 @@
 
 .title-page4 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/FETO-01.png);
+  background-image: url(ARTSANDMEDIA/FETO-01.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -220,7 +220,7 @@
 
 .title-page5 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/EDUQUIP.png);
+  background-image: url(ARTSANDMEDIA/EDUQUIP.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -236,7 +236,7 @@
 
 .title-page6 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/PHOTOGRAPHY.png);
+  background-image: url(ARTSANDMEDIA/PHOTOGRAPHY.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -252,7 +252,7 @@
 
 .title-page7 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/UNIVERSITY\ ASSIGNMENTS.png);
+  background-image: url(ARTSANDMEDIA/UNIVERSITY\ ASSIGNMENTS.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -268,7 +268,7 @@
 
 .title-page8 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/NSO.png);
+  background-image: url(ARTSANDMEDIA/NSO.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -284,7 +284,7 @@
 
 .title-page9 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/CACTUS.png);
+  background-image: url(ARTSANDMEDIA/CACTUS.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
@@ -300,7 +300,7 @@
 
 .title-page10 {
   position: relative;
-  background-image: url(/IMAGES/ARTSANDMEDIA/TONE.png);
+  background-image: url(ARTSANDMEDIA/TONE.png);
   width: 100vw;
   min-height: 100vh;
   background-attachment: fixed;
