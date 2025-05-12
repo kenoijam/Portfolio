@@ -108,8 +108,9 @@
   
   .hero-text {
     flex: 1;
-    margin-left: 100px;
+    margin: 0 auto;
     font-size: 80px;
+    text-align: center;
   }
   
   .hero-text h1 {
@@ -533,6 +534,7 @@
       text-align: left;
       margin-top: 20px;
     }
+
     .hero-image {
       display: flex;
       justify-content: center !important;
@@ -565,6 +567,35 @@
       margin: 0 auto;
       display: block;
     }
+
+      .hero-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-text {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-text h1 {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .domain:after {
+    left: 100%;
+    margin-left: 10px;
+    right: auto;
+  }
+
+  .hero-tags {
+    margin-top: 6px;
+    }
   }
 
   .info-card {
@@ -590,6 +621,16 @@
       max-height: 400px;
       justify-content: center;
     }
+
+  .hero-text {
+    margin-left: 100px;
+    text-align: left;
+  }
+
+  .hero-tags{
+  justify-content: center;
+  }
+
   }
   
   @media (max-width: 768px) {
@@ -621,7 +662,6 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-
     }
     
     .hero-text {
