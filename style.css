@@ -108,9 +108,8 @@
   
   .hero-text {
     flex: 1;
-    margin: 0 auto;
+    margin-left: 100px;
     font-size: 80px;
-    text-align: center;
   }
   
   .hero-text h1 {
@@ -593,9 +592,6 @@
     right: auto;
   }
 
-  .hero-tags {
-    margin-top: 6px;
-    }
   }
 
   .info-card {
@@ -625,10 +621,6 @@
   .hero-text {
     margin-left: 100px;
     text-align: left;
-  }
-
-  .hero-tags{
-  justify-content: center;
   }
 
   }
@@ -725,10 +717,6 @@
       margin-left: 0;
       text-align: center;
     }
-
-      .hero-tags {
-    font-size: 14px;
-  }
 
     .hero-image {
       justify-content: center;
