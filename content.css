@@ -571,14 +571,14 @@ footer {
     padding: 2rem;
   }
     .content-title {
-    font-size: 60px;
+    font-size: 70px;
     line-height: 1.1;
     word-wrap: break-word;
     hyphens: auto;
   }
 
   .content-title.sub {
-    font-size: 55px;
+    font-size: 65px;
   }
 
   .content-subtitle {
