@@ -518,6 +518,7 @@ font-style: italic;
     align-items: center;       
     justify-content: space-between;        
     padding: 10px 20px;
+    padding-top: 35px;
     font-size: small;
   }
 
