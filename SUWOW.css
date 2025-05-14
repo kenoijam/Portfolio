@@ -305,6 +305,8 @@ font-style: italic;
   .nav-links li {
     width: 100%;
   }
+
+  
   
   .nav-links li a {
     display: block;
@@ -500,3 +502,14 @@ font-style: italic;
     }
   
   }
+
+  @media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-nav {
+    text-align: left;
+    margin-top: 20px;
+  }
+}

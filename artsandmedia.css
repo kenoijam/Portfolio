@@ -653,3 +653,14 @@ footer {
     }
 
   }
+
+  @media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-nav {
+    text-align: left;
+    margin-top: 20px;
+  }
+}
