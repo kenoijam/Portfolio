@@ -146,9 +146,20 @@
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
   }
+
+    .hero-tags a {
+    text-decoration: none;
+    color: #084c61;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+      .hero-tags a:hover{
+    text-decoration: underline;
+  }
   
   .hero-tags span {
     position: relative;
+    margin-top: 5px;
   }
   
   .hero-image {
@@ -523,7 +534,6 @@
     font-style: italic;
   }
 
-  /* Add this to your media query for smaller screens */
   @media (max-width: 768px) {
     .footer-container {
       flex-direction: column;
@@ -623,6 +633,8 @@
 
   .hero-tags{
     text-align: center;
+    font-size: medium;
+    justify-content: center;
   }
 
   }
