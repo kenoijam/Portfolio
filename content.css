@@ -149,6 +149,7 @@ text-align: center;
 .content-title.sub {
 margin-top: -0.5rem;
 font-family: 'MauritiusItalic', serif;
+font-style: italic;
 }
 
 .content-subtitle {
