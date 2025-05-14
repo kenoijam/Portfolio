@@ -532,6 +532,17 @@
     .content {
         grid-template-columns: 2, fr;
     }
+    
+      .content-title {
+    font-size: 60px; /* Smaller font size for mobile */
+    line-height: 1.1;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .content-title.sub {
+    font-size: 55px; /* Slightly smaller for subtitle */
+  }
 }
 
 footer {
