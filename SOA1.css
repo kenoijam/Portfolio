@@ -187,10 +187,11 @@ text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
 }
 
 .content-title.sub {
-margin-top: -0.5rem;
-font-family: 'MauritiusItalic', serif;
-color: #f7eee3;
-}
+  margin-top: -0.5rem;
+  font-family: 'MauritiusItalic', serif;
+  color: #f7eee3;
+  font-style: italic;
+  }
 
 .moreprojects{
   background-color: #f7eee3;

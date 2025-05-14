@@ -116,13 +116,13 @@
     font-size: 80px;
     line-height: 0.9;
     color: #084c61;
-    font-family: 'MauritiusCondensed', sans-serif;
     margin-bottom: 1.5rem;
   }
 
   .domain {
     color: #084c61;
     font-family: 'MauritiusItalic', serif;
+    font-style: italic;
     position: relative;
   }
   
@@ -608,7 +608,6 @@
   /* Responsive Styles */
   @media (max-width: 1024px) {
     .hero-text h1 {
-      margin-left: 0;
       font-size: 4rem;
       text-align: center;
     }
@@ -619,8 +618,11 @@
     }
 
   .hero-text {
-    margin-left: 100px;
     text-align: left;
+  }
+
+  .hero-tags{
+    text-align: center;
   }
 
   }
@@ -663,6 +665,10 @@
       padding: 0 1rem;
       max-width: 100%;
     }
+
+    .hero-tags{
+    text-align: center;
+  }
     
     .hero-image {
       justify-content: center;
@@ -720,6 +726,10 @@
 
     .hero-image {
       justify-content: center;
+    }
+
+    .hero-tags {
+      font-size: small;
     }
     
     .hello-section {
