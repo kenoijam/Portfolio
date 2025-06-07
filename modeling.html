@@ -10,15 +10,28 @@
 
 <body>
   <header>
-    <nav class="navbar">
+      <nav class="navbar">
       <div class="logo"><a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" ></a></div>
-      <ul style="font-family: Arial, Helvetica, sans-serif;">
+        <div class="burger" onclick="toggleMenu()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+
+  <!-- Navigation Links -->
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">HOME</a></li>
         <li><a href="content.html">CONTENT</a></li>
         <li><a href="artsandmedia.html">ARTS AND MEDIA</a></li>
-        <li><a a class="active" href="#">MODELING</a></li>
+        <li><a class="active" href="modeling.html">MODELING</a></li>
       </ul>
     </nav>
+    
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+</script>
   </header>
 
 

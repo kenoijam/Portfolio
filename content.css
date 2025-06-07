@@ -41,20 +41,23 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   padding: 20px 20px;
   background-color: #f7eee3;
   flex-wrap: wrap;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 5px;
+  flex-direction: row;
+  gap: 30px;
   margin-left: auto;
+  margin-top: 0;
 }
 
 .nav-links li a {
   text-decoration: none;
+  list-style: none;
   color: #084c61;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -62,6 +65,8 @@ header {
 .logo img {
   max-width: 100%;
   background-color: #f7eee3;
+  background: none;
+  text-align: right;
 }
 
 nav ul {
@@ -934,7 +939,7 @@ html, body {
 /* Show burger and hide links on small screens */
 @media (max-width: 768px) {
   .burger {
-    display: flex;
+    display: flex !important; /* FORCE display */
   }
 
   .nav-links {
@@ -950,7 +955,7 @@ html, body {
 
   .nav-links li a {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #084c613b;
   }
 
   .navbar a.active {

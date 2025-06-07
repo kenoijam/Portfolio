@@ -37,62 +37,74 @@
   /* Header */
   header {
     background-color: #cbebea;
+    text-decoration: none;
   }
   
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: #cbebea;
-    flex-wrap: wrap;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 5px;
-    margin-left: auto;
-  }
-  
-  .nav-links li a {
-    text-decoration: none;
-    color: #084c61;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .logo img {
-    max-width: 100%;
-    background-color: #cbebea;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin-right: 20px;
-    padding: 0;
-    margin-left: auto;
-    background-color: #cbebea;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #084c61;
-    position: relative;
-    text-align: right;
-     background-color:  #cbebea;
-  }
-  
-  .navbar a.active {
-    border-radius: 1rem;
-    background-image: url('ELEMENTS/CIRCLE 2.png');
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    position: relative;
-    padding: 15px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px 20px;
+  background-color: #cbebea;
+  flex-wrap: wrap;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-left: auto;
+  margin-top: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  list-style: none;
+  color: #084c61;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo img {
+  max-width: 100%;
+  background-color: #cbebea;
+  background: none;
+  text-align: right;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin-right: 20px;
+  padding: 0;
+  margin-left: auto;
+  background-color: #cbebea;
+  text-decoration: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: #084c61;
+  position: relative;
+  text-align: right;
+  background-color: #cbebea;
+}
+
+.navbar a.active {
+  border-radius: 1rem;
+  background-image: url('ELEMENTS/CIRCLE\ 2.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  position: relative;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+}
   
   .title-content-horizontal {
     display: flex;
@@ -542,47 +554,56 @@ font-style: italic;
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;       
-    align-items: center;       
-    justify-content: space-between;        
-    padding: 10px 20px;
-    padding-top: 35px;
-    font-size: small;
+.navbar {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  padding-top: 35px;
+  font-size: small;
+}
+
+  .burger {
+    display: flex !important;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    margin-left: auto;
   }
 
-  .logo {
-    max-width: 120px;
-    flex-shrink: 0;
-  }
-
-  .logo img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+  .burger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #084c61;
+    transition: all 0.3s;
   }
 
   .nav-links {
-    flex-direction: row;       
-    gap: 12px;
-    margin-left: auto;
-    width: auto;
-    font-size: small;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
   }
 
   .nav-links li a {
-    font-size: 14px;
-    padding: 6px 10px;
-    background-color: transparent;
+    display: block;
+    padding: 10px;
+    background-color: #cbebea;
     text-align: right;
+    border-bottom: 1px solid #084c613b;
   }
 
   .navbar a.active {
+    background-image: none;
+    border-radius: 0;
     padding: 12px;
   }
-}
-
-@media (max-width: 540) {
-  .nav-links li a
-  {font-size: 12px;}
 }
