@@ -915,3 +915,46 @@ html, body {
   .nav-links li a
   {font-size: 12px;}
 }
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.burger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #084c61;
+  transition: all 0.3s;
+}
+
+/* Show burger and hide links on small screens */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li a {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .navbar a.active {
+    background-image: none;
+    border-radius: 0;
+  }
+}
