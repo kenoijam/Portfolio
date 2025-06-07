@@ -540,32 +540,12 @@ font-style: italic;
   }
 }
 
-
-
 @media (max-width: 768px) {
-  .burger {
-    display: flex !important; /* FORCE display */
+  .content-title {
+    font-size: 60px;
   }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li a {
-    padding: 10px;
-    border-bottom: 1px solid #084c613b;
-  }
-
-  .navbar a.active {
-    background-image: none;
-    border-radius: 0;
+  .content-title.sub{
+    font-size: 60px;
   }
 }
 
@@ -621,5 +601,21 @@ font-style: italic;
     background-image: none;
     border-radius: 0;
     padding: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .title-page {
+    background-attachment: scroll !important;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* iOS-specific fallback for parallax fix */
+  .title-page {
+    background-attachment: scroll !important;
+    background-size: cover;
   }
 }

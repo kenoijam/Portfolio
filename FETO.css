@@ -554,6 +554,15 @@ font-style: italic;
 }
 
 @media (max-width: 768px) {
+  .content-title {
+    font-size: 60px;
+  }
+  .content-title.sub{
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
 .navbar {
   flex-direction: row;
   align-items: center;
@@ -605,5 +614,21 @@ font-style: italic;
     background-image: none;
     border-radius: 0;
     padding: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .title-page {
+    background-attachment: scroll !important;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* iOS-specific fallback for parallax fix */
+  .title-page {
+    background-attachment: scroll !important;
+    background-size: cover;
   }
 }
