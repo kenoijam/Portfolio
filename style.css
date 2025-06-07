@@ -815,10 +815,38 @@ nav a {
 
 @media (max-width: 540px) {
   .nav-links li a
-  {font-size: 12px;}
+  {font-size: 12px;
+  }
+  .burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
 }
 
-/* Show burger and hide links on small screens */
+.burger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #084c61;
+  transition: all 0.3s;
+}}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.burger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #084c61;
+  transition: all 0.3s;
+}
+
 @media (max-width: 768px) {
   .burger {
     display: flex !important; /* FORCE display */

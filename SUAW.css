@@ -628,3 +628,11 @@ text-align: center;
     padding: 12px;
   }
 }
+
+@media (max-width: 1024px) {
+  .title-page {
+    background-attachment: scroll !important;
+    background-position: center center;
+    background-size: cover;
+  }
+}
