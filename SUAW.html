@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kenisha's Portfolio</title>
-  <link rel="stylesheet" href="artsandmedia.css"/>
+  <link rel="stylesheet" href="SUAW.css"/>
 </head>
 
 <body>
@@ -20,34 +20,43 @@
     </nav>
   </header>
 
+  <a href="artsandmedia.html" class="back-button" title="Back to More Projects">
+    &#8592;
+  </a>
+
   <section class="artsandmedia">
-    <div class="content">
-
-      <section class="content-section">
-        <div class="content-header">
-          <h2 class="content-title">Creative</h2>
-          <h2 class="content-title sub">Projects</h2>
-          <p class="content-subtitle">Click on the project to find their descriptions!</p>
+    <div class="title-page">
+      <div class="title-content-horizontal">
+        <div class="qrcode">
+          <a href="https://youtu.be/CmwwsQtNrLc?si=XqghjfeU1WOQEnRO" target="_blank">
+            <img src="QRCODES/SUAW.png"></a>
         </div>
-
-      <a href="SOA1.html"><img src="ARTSANDMEDIA/STATE OF AFFAIRS-06.png"></a>
-      <a href="SOA2.html"><img src="ARTSANDMEDIA/STATE OF AFFAIRS-07.png"></a>
-      <a href="COOLDOWN.html"><img src="ARTSANDMEDIA/COOLDOWN.png"></a>
-      <a href="SUAW.html"><img src="ARTSANDMEDIA/SUAW.png"></a>
-      <a href="SUWOW.html"><img src="ARTSANDMEDIA/SUWOW.png"></a>
-      <a href="FETO.html"><img src="ARTSANDMEDIA/FETO.png"></a>
-      <a href="NSO.html"><img src="ARTSANDMEDIA/NSO.png"></a>
-      <a href="EDUQUIP.html"><img src="ARTSANDMEDIA/EDUQUIP.png"></a>
-      <a href="PHOTO.html"><img src="ARTSANDMEDIA/PHOTOGRAPHY.png"></a>
-      <a href="UNI.html"><img src="ARTSANDMEDIA/UNIVERSITYASSIGNMENTS.png"></a>
-      <a href="CACTUS.html"><img src="ARTSANDMEDIA/CACTUS.png"></a>
-      <a href="TONE.html"><img src="ARTSANDMEDIA/TONE.png"></a>
-      <a href="JB3.html"><img src="ARTSANDMEDIA/JB3.png"></a>
+        <div class="title-text">
+          <h2 class="content-title">SU Awarding</h2>
+          <h2 class="content-title sub">2025</h2>
+        </div>
+      </div>
+    </div>
+  <div class="content-section">
+    <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>I was chosen to be the head of the creative team for SU Awarding 2025.<br>
+          It’s an internal event that awards the best organizations, events, and student clubs.<br>
+          I designed the overall guideline, a lot of the printed items for the venue decor, and most of the feed as well.</p>
+      </div>
+    </div>
+      <div class="job-block">
+        <h2 class="h2">My<span class="circle">Job</span></h2>
+        <p>Head of the Creative Team</p>
+      </div>
     </div>
 
+    <div class="calender">
+      <p>December 2024 - May 2025</p>
+  </div>
 
-    </section>
-</body>
+
+  </section>
 
 <footer>
     <div class="footer-container">
@@ -106,7 +115,7 @@
           email.addEventListener("touchstart", function (e) {
             const touch = e.touches[0];
             copyEmail(touch.pageX, touch.pageY);
-          });   
+          });          
         
             function showPopup(x, y) {
               popup.style.left = `${x + 10}px`;
