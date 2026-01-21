@@ -47,8 +47,14 @@
                 playPromise = null;
             }
 
-            container.addEventListener('mouseenter', playVideo);
-            container.addEventListener('mouseleave', pauseVideo);
+            // FIX: use mouseover/mouseout so it still works even when the overlay link is on top
+            container.addEventListener('mouseover', function(e) {
+                if (!container.contains(e.relatedTarget)) playVideo();
+            });
+
+            container.addEventListener('mouseout', function(e) {
+                if (!container.contains(e.relatedTarget)) pauseVideo();
+            });
             
             // Mobile Support
             container.addEventListener('touchstart', function(e) {
