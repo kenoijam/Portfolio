@@ -11,56 +11,45 @@
         const videos = document.querySelectorAll('.hover-video, .hover-video1');
         
         videos.forEach(video => {
-            // Force browser compliance settings
+            // Essential for browser compliance
             video.muted = true;
+            video.setAttribute('muted', ''); 
             video.preload = "auto"; 
             
             const container = video.closest('.video-hover') || video.closest('.video-hover1');
-            
-            // This flag tracks the specific play request to prevent AbortErrors
             let playPromise = null;
 
             async function playVideo() {
-                video.muted = true;
-                
-                // Wake up the video if it's not ready
+                // Ensure the video is ready to talk to the server
                 if (video.readyState < 3) {
                     video.load();
                 }
-
+                
+                video.muted = true;
                 playPromise = video.play();
 
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
-                        // Video started successfully
                         playPromise = null;
                     }).catch(error => {
-                        if (error.name !== 'AbortError') {
-                            console.error("Playback error:", error);
-                        }
                         playPromise = null;
+                        // Silently handle the AbortError
                     });
                 }
             }
 
             async function pauseVideo() {
-                // If the video is still trying to start, wait for it before pausing
                 if (playPromise) {
-                    try {
-                        await playPromise;
-                    } catch (e) {
-                        // Ignore errors from the interrupted play
-                    }
+                    await playPromise.catch(() => {});
                 }
                 video.pause();
                 video.currentTime = 0;
             }
 
-            // Desktop Hover
             container.addEventListener('mouseenter', playVideo);
             container.addEventListener('mouseleave', pauseVideo);
             
-            // Mobile Touch
+            // Touch support for mobile devices
             container.addEventListener('touchstart', function(e) {
                 if (e.target.closest('.click-overlay')) return;
                 e.preventDefault();
@@ -103,8 +92,52 @@
       
       <div class="bar"></div>
 
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>These days people are starting to be ungrateful.<br>
+        They either compare themselves or what they have with other people.<br>
+        With this content, I want to spread positivity and help<br>
+        everyone can upload their daily lives.<br>
+        So I created #todaysthankfulness mentioning one thing I'm thankful for today.<br>
+        I also want to spread this to my followers by randomly<br>
+        asking them what they're thankful for that day.</p>
+      </div>
+      
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>The goal of this content is to spread positivity and gratitude.<br>
+        I encourage people to be grateful for what they have.<br>
+        It also works as a self-reminder for myself as well.</p>
+      </div>
+      
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I film the content, edit the videos, and design the thumbnails by myself!</p>
+      </div>
+      
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Uploaded on</h2>
+        <img class="arrow" src="ELEMENTS/ARROW 2.png">
+      </div>
+
+      <div class="platform">
+        <div class="platform-column">
+            <li class="platform-item">INSTAGRAM REELS</li>
+            <li class="platform-item-2"><a href="https://www.instagram.com/kenisha_g.w/" target="_blank"><strong>@kenisha_g.w</strong></a></li>
+        </div>
+        <div class="platform-column">
+                <li class="platform-item">TIKTOK</li>
+                <li class="platform-item-2"><a href="https://www.tiktok.com/@kenoijam" target="_blank"><strong>@kenoijam</strong></a></li>
+        </div>
+        <div class="platform-column">
+                <li class="platform-item">YOUTUBE SHORTS</li>
+                <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
+         </div>
+      </div>
+
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
+        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Instagram Reel!</p>
         <div class="thumb-grid">
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img">
@@ -147,9 +180,45 @@
       <div class="content-header">
         <h2 class="content-title">Youtube</h2>
         <h2 class="content-title sub">Content</h2>
+        <p class="content-subtitle">RANDOM VLOGS AND CHALLENGES</p>
       </div>
       
+      <div class="bar"></div>
+
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>I started a Youtube channel for random vlogs and challenges
+          with friends and family. I use this channel as my digital diary to
+          compile my memories and fun times I had.</p>
+      </div>
+      
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>The goal of this channel is to be a comfort channel,
+          I aim to make the viewers feel relaxed at times of resting.
+          Hopefully the viewers enjoy my content, bringing smiles and laughters</p>
+      </div>
+      
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I film the content, edit the videos, and design the thumbnails by myself! </p>
+      </div>
+      
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Username</h2>
+        <img class="y-arrow" src="ELEMENTS/ARROW 3.png">
+      </div>
+
+      <div class="platform">
+        <div class="platform-column">
+            <li class="platform-item">Keni</li>
+            <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
+        </div>
+      </div>
+
       <div class="thumbnail">
+        <h2 class="h2">Top<span class="circle">Videos:</span></h2>
+        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Youtube Video!</p>
         <div class="thumb-grid1">
           <div class="video-hover1">
             <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
