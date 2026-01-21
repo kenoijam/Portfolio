@@ -7,80 +7,71 @@
   <link rel="stylesheet" href="content.css" />
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const videos = document.querySelectorAll('.hover-video, .hover-video1');
+document.addEventListener('DOMContentLoaded', function() {
+    const videos = document.querySelectorAll('.hover-video, .hover-video1');
+    
+    videos.forEach(video => {
+        video.muted = true;
+        video.preload = "auto"; // Changed to auto for better LFS streaming
         
-        videos.forEach(video => {
-            video.muted = true;
-            video.pause(); 
-            
-            const container = video.closest('.video-hover') || video.closest('.video-hover1');
-            let isPlaying = false;
+        const container = video.closest('.video-hover') || video.closest('.video-hover1');
+        let isPlaying = false;
 
-            async function playVideo() {
-                // Ensure we don't try to play twice
-                if (video.paused && !isPlaying) {
-                    isPlaying = true;
-                    video.muted = true;
+        async function playVideo() {
+            if (video.paused && !isPlaying) {
+                isPlaying = true;
+                video.muted = true;
 
-                    // If the video hasn't loaded data yet, force it
-                    if (video.readyState < 2) {
-                        video.load();
-                    }
+                // Force load if data isn't ready
+                if (video.readyState < 2) {
+                    video.load();
+                }
 
-                    try {
-                        // A tiny delay helps Safari/Arc process the file request
-                        await new Promise(resolve => setTimeout(resolve, 50));
-                        await video.play();
-                    } catch (error) {
-                        console.log("Browser blocked or aborted play:", error.name);
-                    } finally {
-                        isPlaying = false;
-                    }
+                try {
+                    // Small delay prevents the AbortError in Arc/Safari
+                    await new Promise(resolve => setTimeout(resolve, 80));
+                    await video.play();
+                } catch (error) {
+                    console.log("Playback interaction handled:", error.name);
+                } finally {
+                    isPlaying = false;
                 }
             }
+        }
 
-            function pauseVideo() {
-                video.pause();
-                video.currentTime = 0;
-                isPlaying = false;
-            }
+        function pauseVideo() {
+            video.pause();
+            video.currentTime = 0;
+            isPlaying = false;
+        }
 
-            // Mouse Events
-            container.addEventListener('mouseenter', playVideo);
-            container.addEventListener('mouseleave', pauseVideo);
-            
-            // Touch Events (Mobile Safari)
-            container.addEventListener('touchstart', function(e) {
-                if (e.target.closest('.click-overlay')) return;
-                e.preventDefault();
-                if (video.paused) {
-                    playVideo();
-                } else {
-                    pauseVideo();
-                }
-            }, { passive: false });
-        });
+        container.addEventListener('mouseenter', playVideo);
+        container.addEventListener('mouseleave', pauseVideo);
+        
+        // Mobile Support
+        container.addEventListener('touchstart', function(e) {
+            if (e.target.closest('.click-overlay')) return;
+            e.preventDefault();
+            video.paused ? playVideo() : pauseVideo();
+        }, { passive: false });
     });
+});
 
-    function toggleMenu() {
-        document.getElementById("navLinks").classList.toggle("show");
-    }
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
   </script>
 </head>
 
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">
-        <a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" alt="Logo"></a>
-      </div>
-      <div class="burger" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-
+      <div class="logo"><a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;"></a></div>
+        <div class="burger" onclick="toggleMenu()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">HOME</a></li>
         <li><a class="active" href="content.html">CONTENT</a></li>
@@ -102,12 +93,10 @@
 
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-        <p><strong>Hover</strong> to watch, and <strong>click</strong> to go to Instagram!</p>
         <div class="thumb-grid">
-          
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img">
-            <video class="hover-video" loop playsinline muted preload="auto">
+            <video class="hover-video" loop playsinline muted>
               <source src="VIDEO/EP 1.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DE67B-5TZHb/" target="_blank" class="click-overlay"></a>
@@ -115,7 +104,7 @@
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 1.png" class="preview-img">
-            <video class="hover-video" loop playsinline muted preload="auto">
+            <video class="hover-video" loop playsinline muted>
               <source src="VIDEO/EP 4.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DFS4vyBTbW3/" target="_blank" class="click-overlay"></a>
@@ -123,7 +112,7 @@
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 2.png" class="preview-img">
-            <video class="hover-video" loop playsinline muted preload="auto">
+            <video class="hover-video" loop playsinline muted>
               <source src="VIDEO/EP 6.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
@@ -131,36 +120,60 @@
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 3.png" class="preview-img">
-            <video class="hover-video" loop playsinline muted preload="auto">
+            <video class="hover-video" loop playsinline muted>
               <source src="VIDEO/EP 13.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
           </div>
-
         </div>
       </div>
     </section>
+    
+    <div class="bar"></div>
 
-    <section class="content-section thankfulness-section">
+     <section class="content-section thankfulness-section">
       <div class="content-header">
-        <h2 class="content-title">Youtube Content</h2>
+        <h2 class="content-title">Youtube</h2>
+        <h2 class="content-title sub">Content</h2>
+        <p class="content-subtitle">RANDOM VLOGS AND CHALLENGES</p>
       </div>
       
-      <div class="thumb-grid1">
-        <div class="video-hover1">
-          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
-          <video class="hover-video1" loop playsinline muted preload="auto">
-            <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
-          </video>
-          <a href="https://youtu.be/wMBVDmtGPUI" target="_blank" class="click-overlay"></a>
-        </div>
+      <div class="bar"></div>
 
-        <div class="video-hover1">
-          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
-          <video class="hover-video1" loop playsinline muted preload="auto">
-            <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
-          </video>
-          <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
+      <div class="thumbnail">
+        <h2 class="h2">Top<span class="circle">Videos:</span></h2>
+        <div class="thumb-grid1">
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
+            <video class="hover-video1" loop playsinline muted>
+              <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
+            </video>
+            <a href="https://youtu.be/wMBVDmtGPUI" target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
+            <video class="hover-video1" loop playsinline muted>
+              <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
+            </video>
+            <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
+            <video class="hover-video1" loop playsinline muted>
+              <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
+            </video>
+            <a href="https://youtu.be/bHT1uYfg2U8" target="_blank" class="click-overlay"></a>
+          </div>
+
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
+            <video class="hover-video1" loop playsinline muted>
+              <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
+            </video>
+            <a href="https://youtu.be/nqUmwclDOuU" target="_blank" class="click-overlay"></a>
+          </div>
         </div>
       </div>
     </section>
@@ -171,26 +184,5 @@
       <p>Copyright © 2026 <strong>Kenisha</strong>. All Rights Reserved.</p>
     </div>
   </footer>
-
-  <script>
-    // Email copy script
-    const email = document.getElementById("email");
-    const popup = document.getElementById("popup");
-    if(email) {
-      email.addEventListener("click", function (e) {
-          const text = email.textContent;
-          navigator.clipboard.writeText(text).then(() => {
-              popup.style.left = `${e.pageX + 10}px`;
-              popup.style.top = `${e.pageY + 10}px`;
-              popup.style.display = "block";
-              setTimeout(() => { popup.style.opacity = "1"; }, 10);
-              setTimeout(() => {
-                  popup.style.opacity = "0";
-                  setTimeout(() => { popup.style.display = "none"; }, 300);
-              }, 2000);
-          });
-      });
-    }
-  </script>
 </body>
 </html>
