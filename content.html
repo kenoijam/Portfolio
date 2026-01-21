@@ -11,54 +11,56 @@
         const videos = document.querySelectorAll('.hover-video, .hover-video1');
         
         videos.forEach(video => {
+            // Force browser compliance settings
             video.muted = true;
             video.preload = "auto"; 
             
             const container = video.closest('.video-hover') || video.closest('.video-hover1');
             
-            // This 'isProcessing' flag prevents the AbortError
-            let isProcessing = false;
+            // This flag tracks the specific play request to prevent AbortErrors
+            let playPromise = null;
 
             async function playVideo() {
-                if (isProcessing) return; // Don't start if already trying
+                video.muted = true;
                 
-                isProcessing = true;
-                video.muted = true; 
-                
-                try {
-                    // Small delay helps the browser stabilize the LFS stream
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                    await video.play();
-                } catch (error) {
-                    // Ignore AbortError as it's a handled interruption
-                    if (error.name !== 'AbortError') {
-                        console.error("Playback error:", error);
-                    }
-                } finally {
-                    isProcessing = false;
+                // Wake up the video if it's not ready
+                if (video.readyState < 3) {
+                    video.load();
+                }
+
+                playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Video started successfully
+                        playPromise = null;
+                    }).catch(error => {
+                        if (error.name !== 'AbortError') {
+                            console.error("Playback error:", error);
+                        }
+                        playPromise = null;
+                    });
                 }
             }
 
             async function pauseVideo() {
-                // Wait for any active play attempt to finish before pausing
-                if (isProcessing) {
-                    await new Promise(resolve => {
-                        const check = setInterval(() => {
-                            if (!isProcessing) {
-                                clearInterval(check);
-                                resolve();
-                            }
-                        }, 50);
-                    });
+                // If the video is still trying to start, wait for it before pausing
+                if (playPromise) {
+                    try {
+                        await playPromise;
+                    } catch (e) {
+                        // Ignore errors from the interrupted play
+                    }
                 }
                 video.pause();
                 video.currentTime = 0;
             }
 
+            // Desktop Hover
             container.addEventListener('mouseenter', playVideo);
             container.addEventListener('mouseleave', pauseVideo);
             
-            // Mobile touch support
+            // Mobile Touch
             container.addEventListener('touchstart', function(e) {
                 if (e.target.closest('.click-overlay')) return;
                 e.preventDefault();
@@ -76,9 +78,7 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">
-        <a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" alt="Logo"></a>
-      </div>
+      <div class="logo"><a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" alt="Logo"></a></div>
       <div class="burger" onclick="toggleMenu()">
         <div class="bar"></div>
         <div class="bar"></div>
