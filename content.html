@@ -8,23 +8,26 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Target all video classes used in your grid
+        // Targets all videos in your grid
         const videos = document.querySelectorAll('.hover-video, .hover-video1');
         
         videos.forEach(video => {
-            // Setup initial states
+            // 1. Force the video to be muted (Required by Arc/Chrome to autoplay)
             video.muted = true;
-            video.preload = "metadata"; // Efficient for Large File Storage
+            video.pause(); 
             
             const container = video.closest('.video-hover') || video.closest('.video-hover1');
             let isPlaying = false;
 
-            // Robust Play Function to prevent AbortErrors
             async function playVideo() {
                 if (!isPlaying) {
+                    // 2. The "Wake Up" command: Force the video to reload its data
+                    if (video.readyState < 3) {
+                        video.load();
+                    }
+                    
+                    video.muted = true; 
                     try {
-                        // Optional: Try to play with sound first
-                        video.muted = false; 
                         const promise = video.play();
                         if (promise !== undefined) {
                             isPlaying = true;
@@ -33,9 +36,7 @@
                         }
                     } catch (error) {
                         isPlaying = false;
-                        // Fallback: If browser blocks sound, play muted
-                        video.muted = true;
-                        video.play().catch(e => console.log("Muted playback also failed:", e));
+                        console.log("Browser protected playback:", error.name);
                     }
                 }
             }
@@ -43,30 +44,25 @@
             function pauseVideo() {
                 video.pause();
                 video.currentTime = 0;
-                video.muted = true;
                 isPlaying = false;
             }
 
-            // Mouse Events
+            // Mouse Hover Events
             container.addEventListener('mouseenter', playVideo);
             container.addEventListener('mouseleave', pauseVideo);
             
-            // Touch/Mobile Events
+            // Touch Events for Mobile
             container.addEventListener('touchstart', function(e) {
+                // Don't interfere with link clicks
                 if (e.target.closest('.click-overlay')) return;
+                
                 e.preventDefault();
                 if (video.paused) {
-                    video.muted = true; 
                     playVideo();
                 } else {
                     pauseVideo();
                 }
             }, { passive: false });
-
-            // Error log for LFS tracking issues
-            video.addEventListener('error', function() {
-                console.error('Video error: Verify "git lfs pull" was run for:', video.currentSrc);
-            });
         });
     });
 
@@ -79,7 +75,9 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo"><a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" alt="Logo"></a></div>
+      <div class="logo">
+        <a href="index.html"><img src="IMAGES/LOGO.png" style="width:128px;height:128px;" alt="Logo"></a>
+      </div>
       <div class="burger" onclick="toggleMenu()">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -107,82 +105,47 @@
 
       <div class="content-block">
         <h2 class="h2"><span class="underline">Synopsis</span></h2>
-        <p>These days people are starting to be ungrateful.<br>
-        They either compare themselves or what they have with other people.<br>
-        With this content, I want to spread positivity and help<br>
-        everyone can upload their daily lives.<br>
-        So I created #todaysthankfulness mentioning one thing I'm thankful for today.<br>
-        I also want to spread this to my followers by randomly<br>
-        asking them what they're thankful for that day.</p>
-      </div>
-      
-      <div class="goal-block">
-        <h2 class="h2">My<span class="circle">Goals</span></h2>
-        <p>The goal of this content is to spread positivity and gratitude.<br>
-        I encourage people to be grateful for what they have.<br>
-        It also works as a self-reminder for myself as well.</p>
-      </div>
-      
-      <div class="i-do-block">
-        <h2 class="h2"><span class="underline">What I do</span></h2>
-        <p>I film the content, edit the videos, and design the thumbnails by myself!</p>
-      </div>
-      
-      <div class="uploaded-on">
-        <h2 class="h2-uploaded">Uploaded on</h2>
-        <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
-      </div>
-
-      <div class="platform">
-        <div class="platform-column">
-            <li class="platform-item">INSTAGRAM REELS</li>
-            <li class="platform-item-2"><a href="https://www.instagram.com/kenisha_g.w/" target="_blank"><strong>@kenisha_g.w</strong></a></li>
-        </div>
-        <div class="platform-column">
-                <li class="platform-item">TIKTOK</li>
-                <li class="platform-item-2"><a href="https://www.tiktok.com/@kenoijam" target="_blank"><strong>@kenoijam</strong></a></li>
-        </div>
-        <div class="platform-column">
-                <li class="platform-item">YOUTUBE SHORTS</li>
-                <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
-         </div>
+        <p>I created #todaysthankfulness mentioning one thing I'm thankful for today.<br>
+        I film, edit, and design everything myself!</p>
       </div>
 
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Instagram Reel!</p>
+        <p><strong>Hover</strong> to watch, and <strong>click</strong> to go to Instagram!</p>
         <div class="thumb-grid">
+          
           <div class="video-hover">
-            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img" alt="Thumbnail 1">
-            <video class="hover-video" loop playsinline muted>
+            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img">
+            <video class="hover-video" loop playsinline muted preload="auto">
               <source src="VIDEO/EP 1.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DE67B-5TZHb/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
-            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 1.png" class="preview-img" alt="Thumbnail 4">
-            <video class="hover-video" loop playsinline muted>
+            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 1.png" class="preview-img">
+            <video class="hover-video" loop playsinline muted preload="auto">
               <source src="VIDEO/EP 4.mp4" type="video/mp4">
             </video>
-            <a href="https://www.instagram.com/reel/DFS4vyBTbW3/?utm_source=ig_web_copy_link" target="_blank" class="click-overlay"></a>
+            <a href="https://www.instagram.com/reel/DFS4vyBTbW3/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
-            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 2.png" class="preview-img" alt="Thumbnail 6">
-            <video class="hover-video" loop playsinline muted>
+            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 2.png" class="preview-img">
+            <video class="hover-video" loop playsinline muted preload="auto">
               <source src="VIDEO/EP 6.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
-            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 3.png" class="preview-img" alt="Thumbnail 13">
-            <video class="hover-video" loop playsinline muted>
+            <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 3.png" class="preview-img">
+            <video class="hover-video" loop playsinline muted preload="auto">
               <source src="VIDEO/EP 13.mp4" type="video/mp4">
             </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
           </div>
+
         </div>
       </div>
     </section>
@@ -193,78 +156,42 @@
       <div class="content-header">
         <h2 class="content-title">Youtube</h2>
         <h2 class="content-title sub">Content</h2>
-        <p class="content-subtitle">RANDOM VLOGS AND CHALLENGES</p>
       </div>
       
-      <div class="bar"></div>
-
-      <div class="content-block">
-        <h2 class="h2"><span class="underline">Synopsis</span></h2>
-        <p>I started a Youtube channel for random vlogs and challenges with friends and family.</p>
-      </div>
-      
-      <div class="goal-block">
-        <h2 class="h2">My<span class="circle">Goals</span></h2>
-        <p>The goal of this channel is to be a comfort channel.</p>
-      </div>
-      
-      <div class="i-do-block">
-        <h2 class="h2"><span class="underline">What I do</span></h2>
-        <p>I film the content, edit the videos, and design the thumbnails by myself! </p>
-      </div>
-      
-      <div class="uploaded-on">
-        <h2 class="h2-uploaded">Username</h2>
-        <img class="y-arrow" src="ELEMENTS/ARROW 3.png" alt="arrow">
-      </div>
-
-      <div class="platform">
-        <div class="platform-column">
-            <li class="platform-item">Keni</li>
-            <li class="platform-item-2"><a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank"><strong>@kenoijam</strong></a></li>
+      <div class="thumb-grid1">
+        <div class="video-hover1">
+          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
+          <video class="hover-video1" loop playsinline muted preload="auto">
+            <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
+          </video>
+          <a href="https://youtu.be/wMBVDmtGPUI" target="_blank" class="click-overlay"></a>
         </div>
-      </div>
 
-      <div class="thumbnail">
-        <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Youtube Video!</p>
-        <div class="thumb-grid1">
-          <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1" alt="YT 1">
-            <video class="hover-video1" loop playsinline muted>
-              <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
-            </video>
-            <a href="https://youtu.be/wMBVDmtGPUI" target="_blank" class="click-overlay"></a>
-          </div>
+        <div class="video-hover1">
+          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
+          <video class="hover-video1" loop playsinline muted preload="auto">
+            <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
+          </video>
+          <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
+        </div>
 
-          <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1" alt="YT 2">
-            <video class="hover-video1" loop playsinline muted>
-              <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
-            </video>
-            <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
-          </div>
+        <div class="video-hover1">
+          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
+          <video class="hover-video1" loop playsinline muted preload="auto">
+            <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
+          </video>
+          <a href="https://youtu.be/bHT1uYfg2U8" target="_blank" class="click-overlay"></a>
+        </div>
 
-          <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1" alt="YT 3">
-            <video class="hover-video1" loop playsinline muted>
-              <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
-            </video>
-            <a href="https://youtu.be/bHT1uYfg2U8" target="_blank" class="click-overlay"></a>
-          </div>
-
-          <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1" alt="YT 4">
-            <video class="hover-video1" loop playsinline muted>
-              <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
-            </video>
-            <a href="https://youtu.be/nqUmwclDOuU" target="_blank" class="click-overlay"></a>
-          </div>
+        <div class="video-hover1">
+          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
+          <video class="hover-video1" loop playsinline muted preload="auto">
+            <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
+          </video>
+          <a href="https://youtu.be/nqUmwclDOuU" target="_blank" class="click-overlay"></a>
         </div>
       </div>
     </section>
-    
-    <div class="bar"></div>
   </main>
 
   <footer>
@@ -275,17 +202,6 @@
           <li><strong>Email</strong>: <span id="email" style="cursor:pointer;">kenishagabriellaw@gmail.com</span></li>
           <div id="popup" style="position:absolute; display:none; background:white; border:1px solid #000; padding:5px; z-index:100; opacity:0; transition: opacity 0.3s;"><strong>Email copied!</strong></div>
           <li><strong>Instagram</strong>: <a href="https://www.instagram.com/kenisha_g.w/" target="_blank">@kenisha.g_w</a></li>
-          <li><strong>TikTok</strong>: <a href="https://www.tiktok.com/@kenoijam" target="_blank">@kenoijam</a></li>
-          <li><strong>YouTube</strong>: <a href="https://youtube.com/@kenoijam" target="_blank">@kenoijam</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-nav">
-        <ul>
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="content.html">CONTENT</a></li>
-          <li><a href="artsandmedia.html">ARTS AND MEDIA</a></li>
-          <li><a href="modeling.html">MODELING</a></li>
         </ul>
       </div>
     </div>
