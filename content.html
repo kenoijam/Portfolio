@@ -8,11 +8,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Targets all videos in your grid
         const videos = document.querySelectorAll('.hover-video, .hover-video1');
         
         videos.forEach(video => {
-            // 1. Force the video to be muted (Required by Arc/Chrome to autoplay)
             video.muted = true;
             video.pause(); 
             
@@ -20,23 +18,24 @@
             let isPlaying = false;
 
             async function playVideo() {
-                if (!isPlaying) {
-                    // 2. The "Wake Up" command: Force the video to reload its data
-                    if (video.readyState < 3) {
+                // Ensure we don't try to play twice
+                if (video.paused && !isPlaying) {
+                    isPlaying = true;
+                    video.muted = true;
+
+                    // If the video hasn't loaded data yet, force it
+                    if (video.readyState < 2) {
                         video.load();
                     }
-                    
-                    video.muted = true; 
+
                     try {
-                        const promise = video.play();
-                        if (promise !== undefined) {
-                            isPlaying = true;
-                            await promise;
-                            isPlaying = false;
-                        }
+                        // A tiny delay helps Safari/Arc process the file request
+                        await new Promise(resolve => setTimeout(resolve, 50));
+                        await video.play();
                     } catch (error) {
+                        console.log("Browser blocked or aborted play:", error.name);
+                    } finally {
                         isPlaying = false;
-                        console.log("Browser protected playback:", error.name);
                     }
                 }
             }
@@ -47,15 +46,13 @@
                 isPlaying = false;
             }
 
-            // Mouse Hover Events
+            // Mouse Events
             container.addEventListener('mouseenter', playVideo);
             container.addEventListener('mouseleave', pauseVideo);
             
-            // Touch Events for Mobile
+            // Touch Events (Mobile Safari)
             container.addEventListener('touchstart', function(e) {
-                // Don't interfere with link clicks
                 if (e.target.closest('.click-overlay')) return;
-                
                 e.preventDefault();
                 if (video.paused) {
                     playVideo();
@@ -103,12 +100,6 @@
       
       <div class="bar"></div>
 
-      <div class="content-block">
-        <h2 class="h2"><span class="underline">Synopsis</span></h2>
-        <p>I created #todaysthankfulness mentioning one thing I'm thankful for today.<br>
-        I film, edit, and design everything myself!</p>
-      </div>
-
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
         <p><strong>Hover</strong> to watch, and <strong>click</strong> to go to Instagram!</p>
@@ -149,13 +140,10 @@
         </div>
       </div>
     </section>
-    
-    <div class="bar"></div>
 
-     <section class="content-section thankfulness-section">
+    <section class="content-section thankfulness-section">
       <div class="content-header">
-        <h2 class="content-title">Youtube</h2>
-        <h2 class="content-title sub">Content</h2>
+        <h2 class="content-title">Youtube Content</h2>
       </div>
       
       <div class="thumb-grid1">
@@ -174,61 +162,35 @@
           </video>
           <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
         </div>
-
-        <div class="video-hover1">
-          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
-          <video class="hover-video1" loop playsinline muted preload="auto">
-            <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
-          </video>
-          <a href="https://youtu.be/bHT1uYfg2U8" target="_blank" class="click-overlay"></a>
-        </div>
-
-        <div class="video-hover1">
-          <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
-          <video class="hover-video1" loop playsinline muted preload="auto">
-            <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
-          </video>
-          <a href="https://youtu.be/nqUmwclDOuU" target="_blank" class="click-overlay"></a>
-        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-contacts">
-        <ul class="socials">
-          <li><strong>SOCIALS</strong></li>
-          <li><strong>Email</strong>: <span id="email" style="cursor:pointer;">kenishagabriellaw@gmail.com</span></li>
-          <div id="popup" style="position:absolute; display:none; background:white; border:1px solid #000; padding:5px; z-index:100; opacity:0; transition: opacity 0.3s;"><strong>Email copied!</strong></div>
-          <li><strong>Instagram</strong>: <a href="https://www.instagram.com/kenisha_g.w/" target="_blank">@kenisha.g_w</a></li>
-        </ul>
-      </div>
-    </div>
     <div class="footer-copyright">
       <p>Copyright © 2026 <strong>Kenisha</strong>. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
+    // Email copy script
     const email = document.getElementById("email");
     const popup = document.getElementById("popup");
-
-    function showPopup(x, y) {
-        popup.style.left = `${x + 10}px`;
-        popup.style.top = `${y + 10}px`;
-        popup.style.display = "block";
-        setTimeout(() => { popup.style.opacity = "1"; }, 10);
-        setTimeout(() => {
-            popup.style.opacity = "0";
-            setTimeout(() => { popup.style.display = "none"; }, 300);
-        }, 2000);
+    if(email) {
+      email.addEventListener("click", function (e) {
+          const text = email.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+              popup.style.left = `${e.pageX + 10}px`;
+              popup.style.top = `${e.pageY + 10}px`;
+              popup.style.display = "block";
+              setTimeout(() => { popup.style.opacity = "1"; }, 10);
+              setTimeout(() => {
+                  popup.style.opacity = "0";
+                  setTimeout(() => { popup.style.display = "none"; }, 300);
+              }, 2000);
+          });
+      });
     }
-
-    email.addEventListener("click", function (e) {
-        const text = email.textContent;
-        navigator.clipboard.writeText(text).then(() => showPopup(e.pageX, e.pageY));
-    });
   </script>
 </body>
 </html>
