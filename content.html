@@ -11,29 +11,29 @@
         const videos = document.querySelectorAll('.hover-video, .hover-video1');
         
         videos.forEach(video => {
-            // Essential for browser compliance
+            // Force these settings so browsers don't block playback
             video.muted = true;
             video.setAttribute('muted', ''); 
+            video.setAttribute('playsinline', '');
             video.preload = "auto"; 
             
             const container = video.closest('.video-hover') || video.closest('.video-hover1');
             let playPromise = null;
 
             async function playVideo() {
-                // Ensure the video is ready to talk to the server
+                video.muted = true;
+                
+                // Wake up the video connection
                 if (video.readyState < 3) {
                     video.load();
                 }
-                
-                video.muted = true;
+
                 playPromise = video.play();
 
                 if (playPromise !== undefined) {
-                    playPromise.then(() => {
+                    playPromise.catch(error => {
+                        // Silently handle interruptions (AbortError)
                         playPromise = null;
-                    }).catch(error => {
-                        playPromise = null;
-                        // Silently handle the AbortError
                     });
                 }
             }
@@ -44,12 +44,13 @@
                 }
                 video.pause();
                 video.currentTime = 0;
+                playPromise = null;
             }
 
             container.addEventListener('mouseenter', playVideo);
             container.addEventListener('mouseleave', pauseVideo);
             
-            // Touch support for mobile devices
+            // Mobile Support
             container.addEventListener('touchstart', function(e) {
                 if (e.target.closest('.click-overlay')) return;
                 e.preventDefault();
@@ -73,6 +74,7 @@
         <div class="bar"></div>
         <div class="bar"></div>
       </div>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">HOME</a></li>
         <li><a class="active" href="content.html">CONTENT</a></li>
@@ -117,7 +119,7 @@
       
       <div class="uploaded-on">
         <h2 class="h2-uploaded">Uploaded on</h2>
-        <img class="arrow" src="ELEMENTS/ARROW 2.png">
+        <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
       </div>
 
       <div class="platform">
@@ -187,15 +189,15 @@
 
       <div class="content-block">
         <h2 class="h2"><span class="underline">Synopsis</span></h2>
-        <p>I started a Youtube channel for random vlogs and challenges
-          with friends and family. I use this channel as my digital diary to
+        <p>I started a Youtube channel for random vlogs and challenges 
+          with friends and family. I use this channel as my digital diary to 
           compile my memories and fun times I had.</p>
       </div>
       
       <div class="goal-block">
         <h2 class="h2">My<span class="circle">Goals</span></h2>
-        <p>The goal of this channel is to be a comfort channel,
-          I aim to make the viewers feel relaxed at times of resting.
+        <p>The goal of this channel is to be a comfort channel, 
+          I aim to make the viewers feel relaxed at times of resting. 
           Hopefully the viewers enjoy my content, bringing smiles and laughters</p>
       </div>
       
@@ -206,7 +208,7 @@
       
       <div class="uploaded-on">
         <h2 class="h2-uploaded">Username</h2>
-        <img class="y-arrow" src="ELEMENTS/ARROW 3.png">
+        <img class="y-arrow" src="ELEMENTS/ARROW 3.png" alt="arrow">
       </div>
 
       <div class="platform">
@@ -221,7 +223,7 @@
         <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Youtube Video!</p>
         <div class="thumb-grid1">
           <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1" alt="YT 1">
             <video class="hover-video1" loop playsinline muted>
               <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
             </video>
@@ -229,7 +231,7 @@
           </div>
 
           <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1" alt="YT 2">
             <video class="hover-video1" loop playsinline muted>
               <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
             </video>
@@ -237,7 +239,7 @@
           </div>
 
           <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1" alt="YT 3">
             <video class="hover-video1" loop playsinline muted>
               <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
             </video>
@@ -245,7 +247,7 @@
           </div>
 
           <div class="video-hover1">
-            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
+            <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1" alt="YT 4">
             <video class="hover-video1" loop playsinline muted>
               <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
             </video>
