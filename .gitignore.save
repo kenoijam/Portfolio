@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Video files
+*.mp4
+*.mov
+*.webm
+
+# Video folder
+VIDEO/
+
+
