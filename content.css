@@ -554,12 +554,55 @@ footer {
   font-style: italic;
 }
 
+/* Smooth “pop” on hover for image cards (no video needed) */
+.video-hover,
+.video-hover1 {
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+.video-hover:hover,
+.video-hover1:hover {
+  transform: scale(1.04);
+  z-index: 5;
+}
+
+/* Keep the image crisp and stable */
+.preview-img,
+.preview-img1 {
+  transition: none;
+}
+
+/* Optional: keep overlay clickable while scaling */
+.video-hover .click-overlay,
+.video-hover1 .click-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+/* If any parent is clipping the scale, allow it */
+.thumb-grid,
+.thumb-grid1 {
+  overflow: visible;
+}
+
+/* Keep images visible on hover (override old hover-to-video behavior) */
+.video-hover:hover .preview-img,
+.video-hover1:hover .preview-img1 {
+  opacity: 1 !important;
+}
+
+/* In case any leftover hover-video elements exist, force-hide them */
+.hover-video,
+.hover-video1 {
+  display: none !important;
+}
+
 .garden-preview {
   width: 100%;
   max-width: 1400px;
   margin: 2rem auto;
 
-  /* key fix: give it real height instead of a short aspect ratio */
   height: min(85vh, 900px);
   min-height: 520px;
 

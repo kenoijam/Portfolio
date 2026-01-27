@@ -7,76 +7,6 @@
   <link rel="stylesheet" href="content.css" />
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const videos = document.querySelectorAll('.hover-video, .hover-video1');
-
-      videos.forEach(video => {
-        // Hover autoplay must be muted (browser rule)
-        video.muted = true;
-        video.setAttribute('playsinline', '');
-        video.preload = 'auto';
-
-        const container =
-          video.closest('.video-hover') || video.closest('.video-hover1');
-
-        let playPromise = null;
-
-        function playVideo() {
-          video.muted = true;
-          if (video.readyState < 3) video.load();
-
-          playPromise = video.play();
-          if (playPromise) {
-            playPromise.catch(() => {});
-          }
-        }
-
-        async function pauseVideo() {
-          if (playPromise) {
-            await playPromise.catch(() => {});
-          }
-          video.pause();
-          video.currentTime = 0;
-          playPromise = null;
-        }
-
-        // Hover preview (muted)
-        container.addEventListener('mouseover', function (e) {
-          if (!container.contains(e.relatedTarget)) playVideo();
-        });
-
-        container.addEventListener('mouseout', function (e) {
-          if (!container.contains(e.relatedTarget)) pauseVideo();
-        });
-
-        // Click on video = unmute and play with sound
-        video.addEventListener('click', function (e) {
-          e.stopPropagation();
-          video.muted = false;
-          video.volume = 1;
-          video.play();
-        });
-
-        // Mobile support
-        container.addEventListener(
-          'touchstart',
-          function (e) {
-            if (e.target.closest('.click-overlay')) return;
-            e.preventDefault();
-
-            if (video.paused) {
-              video.muted = false;
-              video.volume = 1;
-              video.play();
-            } else {
-              pauseVideo();
-            }
-          },
-          { passive: false }
-        );
-      });
-    });
-
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('show');
     }
@@ -108,163 +38,151 @@
 
   <main>
     <!-- ON A BUDGET -->
-<section class="content-section thankfulness-section">
-  <div class="content-header">
-    <h2 class="content-title">On a</h2>
-    <h2 class="content-title sub">Budget</h2>
-    <p class="content-subtitle">LOW BUDGET, JUST VIBES</p>
-  </div>
+    <section class="content-section thankfulness-section">
+      <div class="content-header">
+        <h2 class="content-title">On a</h2>
+        <h2 class="content-title sub">Budget</h2>
+        <p class="content-subtitle">LOW BUDGET, JUST VIBES</p>
+      </div>
 
-  <div class="bar"></div>
+      <div class="bar"></div>
 
-  <div class="content-block">
-    <h2 class="h2"><span class="underline">Synopsis</span></h2>
-    <p>
-      On a Budget is a variety show where I have my friends <br> 
-      play different games and challenges that are budget friendly.<br>
-      Each season has a different theme (every month), <br>
-      and each episode is a different game (every Friday)! <br>
-      We try to make it fun and entertaining while still<br>
-      keeping it simple and easy to watch.
-    </p>
-  </div>
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>
+          On a Budget is a variety show where I have my friends <br> 
+          play different games and challenges that are budget friendly.<br>
+          Each season has a different theme (every month), <br>
+          and each episode is a different game (every Friday)! <br>
+          We try to make it fun and entertaining while still<br>
+          keeping it simple and easy to watch.
+        </p>
+      </div>
 
-  <div class="goal-block">
-    <h2 class="h2">My<span class="circle">Goals</span></h2>
-    <p>
-      The goal of this show is to create a comfort watch that feels<br>
-      like hanging out with friends. I want to make viewers laugh and<br>
-      enjoy the games while building a consistent series.
-    </p>
-  </div>
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>
+          The goal of this show is to create a comfort watch that feels<br>
+          like hanging out with friends. I want to make viewers laugh and<br>
+          enjoy the games while building a consistent series.
+        </p>
+      </div>
 
-  <div class="i-do-block">
-    <h2 class="h2"><span class="underline">What I do</span></h2>
-    <p>I plan the episodes, film the content, edit the videos, <br> and design the thumbnails by myself!</p>
-  </div>
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I plan the episodes, film the content, edit the videos, <br> and design the thumbnails by myself!</p>
+      </div>
 
-  <div class="uploaded-on">
-    <h2 class="h2-uploaded">Uploaded on</h2>
-    <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
-  </div>
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">Uploaded on</h2>
+        <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
+      </div>
 
-  <div class="platform">
-    <div class="platform-column">
-      <li class="platform-item">YOUTUBE</li>
-      <li class="platform-item-2">
-        <a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank">
-          <strong>@kenoijam</strong>
-        </a>
-      </li>
-    </div>
-  </div>
+      <div class="platform">
+        <div class="platform-column">
+          <li class="platform-item">YOUTUBE</li>
+          <li class="platform-item-2">
+            <a href="https://youtube.com/@kenoijam?si=weQgr9ZJpMn4n5aB" target="_blank">
+              <strong>@kenoijam</strong>
+            </a>
+          </li>
+        </div>
+      </div>
 
-  <div class="thumbnail">
-  <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-  <p><strong>Hover</strong> to watch the previews, and <strong>click</strong> to be redirected to the Youtube Video!</p>
+      <div class="thumbnail">
+        <h2 class="h2">Top<span class="circle">Videos:</span></h2>
+        <p><strong>Click</strong> to be redirected to the Youtube Video!</p>
 
-  <div class="thumb-grid1">
-    <div class="video-hover1">
-      <img src="YT-THUMBNAILS/OAB TRAILER.jpg" class="preview-img1">
-      <video class="hover-video1" loop playsinline>
-        <source src="VIDEO/OAB TRAILER.mp4" type="video/mp4">
-      </video>
-      <a href="https://youtu.be/REPLACE_WITH_ON_A_BUDGET_LINK_2" target="_blank" class="click-overlay"></a>
-    </div>
+        <div class="thumb-grid1">
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/OAB TRAILER.jpg" class="preview-img1">
+            <a href="https://youtu.be/REPLACE_WITH_ON_A_BUDGET_LINK_2" target="_blank" class="click-overlay"></a>
+          </div>
 
-    <div class="video-hover1">
-      <img src="YT-THUMBNAILS/OAB PREVIEW SEASON 1.jpg" class="preview-img1">
-      <video class="hover-video1" loop playsinline>
-        <source src="VIDEO/OAB PREVIEW SEASON 1.mp4" type="video/mp4">
-      </video>
-      <a href="https://youtu.be/DMEMXs80lik?si=tnnaUvs702fcaz0_" target="_blank" class="click-overlay"></a>
-    </div>
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/OAB PREVIEW SEASON 1.jpg" class="preview-img1">
+            <a href="https://youtu.be/DMEMXs80lik?si=tnnaUvs702fcaz0_" target="_blank" class="click-overlay"></a>
+          </div>
 
-    <div class="video-hover1">
-      <img src="YT-THUMBNAILS/EP 1-1.jpg" class="preview-img1">
-      <video class="hover-video1" loop playsinline>
-        <source src="VIDEO/OAB REEL 1.mp4" type="video/mp4">
-      </video>
-      <a href="https://youtu.be/2i39P82wr_c?si=KHMPLNxFNYMAJmBY" target="_blank" class="click-overlay"></a>
-    </div>
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/EP 1-1.jpg" class="preview-img1">
+            <a href="https://youtu.be/2i39P82wr_c?si=KHMPLNxFNYMAJmBY" target="_blank" class="click-overlay"></a>
+          </div>
 
-    <div class="video-hover1">
-      <img src="YT-THUMBNAILS/EP 1-4.jpg" class="preview-img1">
-      <video class="hover-video1" loop playsinline>
-        <source src="VIDEO/OAB REEL 4.mp4" type="video/mp4">
-      </video>
-      <a href="https://youtu.be/NbY-ZPF2_7A?si=6x719EYykhNqcjsz" target="_blank" class="click-overlay"></a>
-    </div>
-  </div>
-</div>
+          <div class="video-hover1">
+            <img src="YT-THUMBNAILS/EP 1-4.jpg" class="preview-img1">
+            <a href="https://youtu.be/NbY-ZPF2_7A?si=6x719EYykhNqcjsz" target="_blank" class="click-overlay"></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- GRATITUDE GARDEN -->
-<section class="content-section thankfulness-section">
-  <div class="content-header">
-    <h2 class="content-title">Gratitude</h2>
-    <h2 class="content-title sub">Garden</h2>
-    <p class="content-subtitle">INTERACTIVE DIGITAL GARDEN FOR GRATITUDE</p>
-  </div>
+    <!-- GRATITUDE GARDEN -->
+    <section class="content-section thankfulness-section">
+      <div class="content-header">
+        <h2 class="content-title">Gratitude</h2>
+        <h2 class="content-title sub">Garden</h2>
+        <p class="content-subtitle">INTERACTIVE DIGITAL GARDEN FOR GRATITUDE</p>
+      </div>
 
-  <div class="bar"></div>
+      <div class="bar"></div>
 
-  <div class="content-block">
-    <h2 class="h2"><span class="underline">Synopsis</span></h2>
-    <p>
-      Gratitude Garden is an interactive digital garden where users can<br>
-      add their gratitude messages and watch the public garden grow.<br>
-      Each entry becomes part of the visual experience, turning gratitude<br>
-      into a space that feels positive and alive.
-    </p>
-  </div>
+      <div class="content-block">
+        <h2 class="h2"><span class="underline">Synopsis</span></h2>
+        <p>
+          Gratitude Garden is an interactive digital garden where users can<br>
+          add their gratitude messages and watch the public garden grow.<br>
+          Each entry becomes part of the visual experience, turning gratitude<br>
+          into a space that feels positive and alive.
+        </p>
+      </div>
 
-  <div class="goal-block">
-    <h2 class="h2">My<span class="circle">Goals</span></h2>
-    <p>
-      The goal of this project is to encourage reflection and emotional<br>
-      expression through interaction. I want users to feel calm and<br>
-      connected while exploring gratitude in a creative way.
-    </p>
-  </div>
+      <div class="goal-block">
+        <h2 class="h2">My<span class="circle">Goals</span></h2>
+        <p>
+          The goal of this project is to encourage reflection and emotional<br>
+          expression through interaction. I want users to feel calm and<br>
+          connected while exploring gratitude in a creative way.
+        </p>
+      </div>
 
-  <div class="i-do-block">
-    <h2 class="h2"><span class="underline">What I do</span></h2>
-    <p>I design the visuals, build the interaction, and develop the experience by myself!</p>
-  </div>
+      <div class="i-do-block">
+        <h2 class="h2"><span class="underline">What I do</span></h2>
+        <p>I design the visuals, build the interaction, and develop the experience by myself!</p>
+      </div>
 
-  <div class="uploaded-on">
-    <h2 class="h2-uploaded">View Project</h2>
-    <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
-  </div>
+      <div class="uploaded-on">
+        <h2 class="h2-uploaded">View Project</h2>
+        <img class="arrow" src="ELEMENTS/ARROW 2.png" alt="arrow">
+      </div>
 
-  <div class="platform">
-    <div class="platform-column">
-      <li class="platform-item">p5.js</li>
-      <li class="platform-item-2">
-        <a href="https://editor.p5js.org/kenishagw/full/hD3oN5uys" target="_blank">
-          <strong>Open Gratitude Garden</strong>
-        </a>
-      </li>
-    </div>
-  </div>
+      <div class="platform">
+        <div class="platform-column">
+          <li class="platform-item">p5.js</li>
+          <li class="platform-item-2">
+            <a href="https://editor.p5js.org/kenishagw/full/hD3oN5uys" target="_blank">
+              <strong>Open Gratitude Garden</strong>
+            </a>
+          </li>
+        </div>
+      </div>
 
-  <div class="thumbnail">
-  <h2 class="h2">Explore the<span class="circle">Garden:</span></h2>
-  <p>Leave your very own gratitude flower in the garden!</p>
+      <div class="thumbnail">
+        <h2 class="h2">Explore the<span class="circle">Garden:</span></h2>
+        <p>Leave your very own gratitude flower in the garden!</p>
 
-  <div class="garden-preview">
-    <iframe
-      src="https://editor.p5js.org/kenishagw/full/hD3oN5uys"
-      title="Gratitude Garden Live Preview"
-      loading="lazy"
-    ></iframe>
-  </div>
-</div>
+        <div class="garden-preview">
+          <iframe
+            src="https://editor.p5js.org/kenishagw/full/hD3oN5uys"
+            title="Gratitude Garden"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <div class="bar"></div>
 
-
-<div class="bar"></div>
     <section class="content-section thankfulness-section">
       <div class="content-header">
         <h2 class="content-title">Today's</h2>
@@ -335,38 +253,26 @@
 
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Instagram Reel!</p>
+        <p><strong>Click</strong> to be redirected to the Instagram Reel!</p>
 
         <div class="thumb-grid">
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL.png" class="preview-img">
-            <video class="hover-video" loop playsinline>
-              <source src="VIDEO/EP 1.mp4" type="video/mp4">
-            </video>
             <a href="https://www.instagram.com/reel/DE67B-5TZHb/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 1.png" class="preview-img">
-            <video class="hover-video" loop playsinline>
-              <source src="VIDEO/EP 4.mp4" type="video/mp4">
-            </video>
             <a href="https://www.instagram.com/reel/DFS4vyBTbW3/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 2.png" class="preview-img">
-            <video class="hover-video" loop playsinline>
-              <source src="VIDEO/EP 6.mp4" type="video/mp4">
-            </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover">
             <img src="TT-THUMBNAILS/TODAY'S THANKFULNESS THUMBNAIL 3.png" class="preview-img">
-            <video class="hover-video" loop playsinline>
-              <source src="VIDEO/EP 13.mp4" type="video/mp4">
-            </video>
             <a href="https://www.instagram.com/reel/DFmPTdrT9mG/" target="_blank" class="click-overlay"></a>
           </div>
         </div>
@@ -425,38 +331,26 @@
 
       <div class="thumbnail">
         <h2 class="h2">Top<span class="circle">Videos:</span></h2>
-        <p><strong>Hover</strong> to watch, and <strong>click</strong> to be redirected to the Youtube Video!</p>
+        <p><strong>Click</strong> to be redirected to the Youtube Video!</p>
 
         <div class="thumb-grid1">
           <div class="video-hover1">
             <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.jpg" class="preview-img1">
-            <video class="hover-video1" loop playsinline>
-              <source src="VIDEO/GRWM AND QNA.mp4" type="video/mp4">
-            </video>
             <a href="https://youtu.be/wMBVDmtGPUI" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover1">
             <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL.png" class="preview-img1">
-            <video class="hover-video1" loop playsinline>
-              <source src="VIDEO/PAPER REX WATCH PARTY.mp4" type="video/mp4">
-            </video>
             <a href="https://youtu.be/sgVkKjCftKg" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover1">
             <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 2.png" class="preview-img1">
-            <video class="hover-video1" loop playsinline>
-              <source src="VIDEO/GUY'S MAKEUP.mp4" type="video/mp4">
-            </video>
             <a href="https://youtu.be/bHT1uYfg2U8" target="_blank" class="click-overlay"></a>
           </div>
 
           <div class="video-hover1">
             <img src="YT-THUMBNAILS/KENOIJAM THUMBNAIL 3.png" class="preview-img1">
-            <video class="hover-video1" loop playsinline>
-              <source src="VIDEO/TRY NOT TO LAUGH.mp4" type="video/mp4">
-            </video>
             <a href="https://youtu.be/nqUmwclDOuU" target="_blank" class="click-overlay"></a>
           </div>
         </div>
